@@ -34,51 +34,49 @@ app.post("/add_build_to_channel", async (req, res) => {
         return;
     }
 
-    const isNotSaved = await saveToStorage(channelName, buildName);
-    if (isNotSaved) {
+    const isSaved = await saveToStorage(channelName, buildName);
+    if (!isSaved) {
         await res
             .status(500)
             .send("Error occurs when writing in file. Please, repeat request.");
         return;
-
     }
 
     await res.sendStatus(200);
 });
 
-// todo: ! there is no need in detailed response
 app.post("/teamcity_webhook", async (req, res) => {
     const fields = req.body;
     if (isObjectEmpty(fields)) {
-        console.log("Empty body!");
+        console.error("Empty body!");
         res.sendStatus(400);
         return;
     }
 
     const { build_name, build_result, build_event, build_status_url } = fields;
     if (!(build_name && build_result && build_event && build_status_url)) {
-        console.log("Wrong webhook format!");
+        console.error("Wrong webhook format!");
         res.sendStatus(400);
         return;
     }
 
     const build_id = getBuildNameFromUrl(build_status_url);
     if (!build_id) {
-        console.log("Please, check build's name");
+        console.error("Please, check build's name");
         res.sendStatus(400);
         return;
     }
 
     const channel_name = await getChannelByBuildId(build_id);
     if (!channel_name) {
-        console.log("Please, check build's and channel's names");
+        console.error("Please, check build's and channel's names");
         res.sendStatus(404);
         return;
     }
 
     const channel = await getChannelId(webClient, channel_name);
     if (!channel) {
-        console.log("Please, check for channel name's updates");
+        console.error("Please, check for channel name's updates");
         res.sendStatus(404);
         return;
     }
@@ -92,9 +90,10 @@ app.post("/teamcity_webhook", async (req, res) => {
         build_result,
         icon,
     };
-    const isSet = setTopic(webClient, topicArguments);
+    const isSet = await setTopic(webClient, topicArguments);
     if (!isSet) {
-        res.sendStatus(400);
+        console.error("Topic hasn't been set! Repeat request later.");
+        res.sendStatus(500);
         return;
     }
 
@@ -106,4 +105,3 @@ const PORT = 9000;
 app.listen(process.env.PORT || PORT, () => {
     console.log(`Node.js server started on port ${process.env.PORT || PORT}.`);
 });
-
