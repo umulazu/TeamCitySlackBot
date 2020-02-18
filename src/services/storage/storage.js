@@ -1,6 +1,6 @@
 import { promises as fs } from "fs";
 
-const nameOfFile = "./services/storage/channel-build.json";
+const nameOfFile = "./src/services/storage/channel-build.json";
 import storage from "./channel-build.json";
 
 export const saveToStorage = async (channel, build) => {

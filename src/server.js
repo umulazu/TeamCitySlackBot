@@ -1,15 +1,15 @@
 import { WebClient } from "@slack/web-api";
 import express from "express";
 import "dotenv/config";
-import getIcon from "../utilities/getIcon";
-import getBuildNameFromUrl from "../utilities/getBuildNameFromUrl";
-import isObjectEmpty from "../utilities/isObjectEmpty";
+import getIcon from "./utilities/getIcon";
+import getBuildNameFromUrl from "./utilities/getBuildNameFromUrl";
+import isObjectEmpty from "./utilities/isObjectEmpty";
 import {
     saveToStorage,
     getChannelByBuildId,
-} from "../services/storage/storage.js";
-import getChannelId from "../services/slack/getChannelId";
-import setTopic from "../services/slack/setTopic";
+} from "./services/storage/storage.js";
+import getChannelId from "./services/slack/getChannelId";
+import setTopic from "./services/slack/setTopic";
 
 const app = express();
 app.use(express.json());
