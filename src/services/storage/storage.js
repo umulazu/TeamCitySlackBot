@@ -2,6 +2,7 @@ import { promises as fs } from "fs";
 
 const nameOfFile = "./src/services/storage/channel-build.json";
 import storage from "./channel-build.json";
+import HttpError from "../../helpers/HttpError";
 
 export const saveToStorage = async (channel, build) => {
     storage.push({
@@ -13,13 +14,16 @@ export const saveToStorage = async (channel, build) => {
         const stringifiedData = JSON.stringify(storage);
         await fs.writeFile(nameOfFile, stringifiedData);
         console.log("Storage has been updated.");
-        return true;
     } catch (err) {
-        console.error(err);
+        throw new HttpError(500, "Error occurred when writing in file.");
     }
 };
 
 export const getChannelByBuildId = async buildId => {
     const desiredObject = storage.find(element => element["build"] === buildId);
-    return desiredObject ? desiredObject.channel : null;
+    if (!desiredObject) {
+        throw new HttpError(404, "Please, check build's and channel's names");
+    }
+
+    return desiredObject.channel;
 };
