@@ -2,7 +2,10 @@ import express from "express";
 import { getChannelByBuildId, saveToStorage } from "./services/storage/Storage";
 import { validationErrorHandler } from "./middlewares/requestValidator/RequestValidator";
 import { setTopic } from "./services/slack/Slack";
-import { addBuildToChannelValidation, teamcityWebhookValidation } from "./middlewares/requestValidator/validators";
+import {
+    addBuildToChannelValidation,
+    teamcityWebhookValidation,
+} from "./middlewares/requestValidator/validators";
 import errorHandler from "./middlewares/errorHandler";
 
 const app = express();
@@ -28,18 +31,13 @@ app.post("/add_build_to_channel", async (req, res, next) => {
 app.post("/teamcity_webhook", teamcityWebhookValidation, validationErrorHandler);
 app.post("/teamcity_webhook", async (req, res, next) => {
     try {
-        const fields = req.body;
+        const buildInfo = req.body;
 
-        // storage:
-        const channel_name = await getChannelByBuildId(fields["build_status_url"]);
-        fields["channel_name"] = channel_name;
+        const channelName = await getChannelByBuildId(
+            buildInfo["build_status_url"]
+        );
 
-        // slack:
-        const slackArguments = {
-            ...fields,
-            channel_name,
-        };
-        await setTopic(slackArguments);
+        await setTopic(buildInfo, channelName);
 
         console.log("Topic was set");
         await res.sendStatus(200);

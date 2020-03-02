@@ -23,14 +23,8 @@ export const getChannelId = async channelName => {
     }
 };
 
-export const setTopicToChannel = async topicArguments => {
-    const {
-        channel,
-        build_name,
-        build_event,
-        build_result,
-        icon,
-    } = topicArguments;
+export const setTopicToChannel = async (channel, buildInfo, icon) => {
+    const { build_name, build_event, build_result } = buildInfo;
 
     try {
         const result = await webClient.conversations.setTopic({
@@ -44,31 +38,21 @@ export const setTopicToChannel = async topicArguments => {
     }
 };
 
-export const setTopic = async rawArguments => {
-    const {
-        channel_name,
-        build_name,
-        build_event,
-        build_result,
-    } = rawArguments;
+export const setTopic = async (buildInfo, channelName) => {
+    const { build_event, build_result } = buildInfo;
 
-    const channel = await getChannelId(channel_name);
+    const channel = await getChannelId(channelName);
     if (!channel) {
         throw new HttpError(404, "Please, check for channel name's updates");
     }
 
     const icon = getIcon(build_result, build_event);
 
-    const topicArguments = {
-        channel,
-        build_name,
-        build_event,
-        build_result,
-        icon,
-    };
-
-    const isSet = await setTopicToChannel(topicArguments);
+    const isSet = await setTopicToChannel(channel, buildInfo, icon);
     if (!isSet) {
-        throw new HttpError(500, "Topic hasn't been set! Repeat request later.");
+        throw new HttpError(
+            500,
+            "Topic hasn't been set! Repeat request later."
+        );
     }
 };

@@ -1,8 +1,8 @@
 import { promises as fs } from "fs";
+import HttpError from "../../helpers/HttpError";
+import storage from "./channel-build.json";
 
 const nameOfFile = "./src/services/storage/channel-build.json";
-import storage from "./channel-build.json";
-import HttpError from "../../helpers/HttpError";
 
 export const saveToStorage = async (channel, build) => {
     storage.push({
