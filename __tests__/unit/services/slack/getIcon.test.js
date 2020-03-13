@@ -1,4 +1,5 @@
 import getIcon from "../../../../src/services/slack/getIcon";
+import icons from "../../../../src/services/slack/icons";
 
 describe("getIcon", function() {
     it("should return Stop mark if running", () => {
@@ -6,18 +7,14 @@ describe("getIcon", function() {
         // event is not important:
         const event = "";
 
-        const stopMark = `${String.fromCodePoint(0x1f6d1)}`;
-
-        expect(getIcon(result, event)).toBe(stopMark);
+        expect(getIcon(result, event)).toBe(icons["stopMark"]);
     });
 
     it("should return Check mark if success", () => {
         const result = "success",
             event = "buildFinished";
 
-        const checkMark = `${String.fromCodePoint(0x2714)}`;
-
-        expect(getIcon(result, event)).toBe(checkMark);
+        expect(getIcon(result, event)).toBe(icons["checkMark"]);
     });
 
     it("should return Exclamation mark if failure", () => {
@@ -25,17 +22,13 @@ describe("getIcon", function() {
         // event can be anything except "running":
         const event = "";
 
-        const exclamationMark = `${String.fromCodePoint(0x2757)}`;
-
-        expect(getIcon(result, event)).toBe(exclamationMark);
+        expect(getIcon(result, event)).toBe(icons["exclamationMark"]);
     });
 
     it("should return Question mark if all the rest", () => {
         const result = "",
             event = "";
 
-        const questionMark = `${String.fromCodePoint(0x2753)}`;
-
-        expect(getIcon(result, event)).toBe(questionMark);
+        expect(getIcon(result, event)).toBe(icons["questionMark"]);
     });
 });

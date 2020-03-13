@@ -1,6 +1,6 @@
 import { body } from "express-validator";
 import getBuildNameFromUrl from "./getBuildNameFromUrl";
-import HttpError from "../../helpers/HttpError";
+import { BadRequestError } from "../../helpers/errors";
 
 export const teamcityWebhookValidation = [
     body([
@@ -15,12 +15,12 @@ export const teamcityWebhookValidation = [
         .bail()
         .isURL()
         .customSanitizer(url => {
-            const build_id = getBuildNameFromUrl(url);
-            if (!build_id) {
-                throw new HttpError(400, "Please, check build's name!");
+            const buildId = getBuildNameFromUrl(url);
+            if (!buildId) {
+                throw new BadRequestError("Please, check build's name!");
             }
 
-            return build_id;
+            return buildId;
         }),
 ];
 

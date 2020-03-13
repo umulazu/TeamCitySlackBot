@@ -18,6 +18,6 @@ describe("getBuildNameFromUrl", () => {
         "http://192.168.21.178:81/viewLog.html?buildTypeId=&buildId=206",
         "http://192.168.21.178:81/viewLog.html?buildTypeId=1&buildId=206&buildTypeId=1",
     ])("should return falsy values", url => {
-        expect(!!getBuildNameFromUrl(url)).toBeFalsy();
+        expect(getBuildNameFromUrl(url)).toBeFalsy();
     });
 });

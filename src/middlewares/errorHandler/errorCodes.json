@@ -1,0 +1,5 @@
+{
+    "BadRequestError": 400,
+    "NotFoundError": 404,
+    "InternalServerError": 500
+}
