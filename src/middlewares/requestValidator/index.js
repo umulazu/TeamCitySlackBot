@@ -1,5 +1,5 @@
 import { validationResult } from "express-validator";
-import { BadRequestError } from "../../helpers/errors";
+import { BadRequestError } from "../../errors";
 
 const errorFormatter = ({ location, msg, param, value, nestedErrors }) => {
     return `${location}[${param}]: ${msg}`;

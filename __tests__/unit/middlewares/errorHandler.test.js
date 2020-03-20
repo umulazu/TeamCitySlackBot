@@ -1,5 +1,5 @@
-import errorHandler from "../../../src/middlewares/errorHandler/errorHandler";
-import { NotFoundError } from "../../../src/helpers/errors";
+import errorHandler from "../../../src/middlewares/errorHandler";
+import { NotFoundError } from "../../../src/errors";
 
 describe("errorHandler", () => {
     console.error = jest.fn();

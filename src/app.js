@@ -1,13 +1,13 @@
 import express from "express";
-import { getChannelByBuildId, saveToStorage } from "./services/storage/Storage";
-import { validationErrorHandler } from "./middlewares/requestValidator/RequestValidator";
-import { setTopic } from "./services/slack/slack";
+import { validationErrorHandler } from "./middlewares/requestValidator";
 import {
     addBuildToChannelValidation,
     teamcityWebhookValidation,
 } from "./middlewares/requestValidator/validators";
-import errorHandler from "./middlewares/errorHandler/errorHandler";
+import errorHandler from "./middlewares/errorHandler";
 import asyncHandler from "./middlewares/asyncHandler";
+import addBuildToChannel from "./handlers/addBuildToChannel";
+import teamcityWebhook from "./handlers/teamcityWebhook";
 
 const app = express();
 app.use(express.json());
@@ -20,31 +20,14 @@ app.post(
     "/add-build-to-channel",
     addBuildToChannelValidation,
     validationErrorHandler,
-    asyncHandler(async (req, res, next) => {
-        const { buildName, channelName } = req.body;
-
-        await saveToStorage(channelName, buildName);
-
-        await res.sendStatus(200);
-    })
+    asyncHandler(addBuildToChannel)
 );
 
 app.post(
     "/teamcity-webhook",
     teamcityWebhookValidation,
     validationErrorHandler,
-    asyncHandler(async (req, res, next) => {
-        const buildInfo = req.body;
-
-        const channelName = await getChannelByBuildId(
-            buildInfo["build_status_url"]
-        );
-
-        await setTopic(buildInfo, channelName);
-
-        console.log("Topic was set");
-        await res.sendStatus(200);
-    })
+    asyncHandler(teamcityWebhook)
 );
 
 app.use(errorHandler);

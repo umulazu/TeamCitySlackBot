@@ -1,7 +1,7 @@
 import {
     getChannelByBuildId,
     saveToStorage,
-} from "../../../../src/services/storage/storage";
+} from "../../../../src/services/storage";
 import storage from "../../../../src/services/storage/channel-build.json";
 import { promises as fs } from "fs";
 
@@ -16,7 +16,9 @@ describe("getChannelByBuildId", () => {
             channel: channel1,
             build: buildId1,
         });
+
         const desiredChannel = await getChannelByBuildId(buildId1);
+
         expect(desiredChannel).toBe(channel1);
     });
 
@@ -38,6 +40,8 @@ describe("saveToStorage", () => {
             throw err;
         });
 
-        await expect(saveToStorage(channel1, buildId1)).rejects.toThrowError();
+        const savedPromise = saveToStorage(channel1, buildId1);
+
+        await expect(savedPromise).rejects.toThrowError();
     });
 });

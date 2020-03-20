@@ -1,6 +1,6 @@
 import { body } from "express-validator";
 import getBuildNameFromUrl from "./getBuildNameFromUrl";
-import { BadRequestError } from "../../helpers/errors";
+import { BadRequestError } from "../../errors";
 
 export const teamcityWebhookValidation = [
     body([

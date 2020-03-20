@@ -1,6 +1,6 @@
 import { promises as fs } from "fs";
 import storage from "./channel-build.json";
-import { InternalServerError, NotFoundError } from "../../helpers/errors";
+import { InternalServerError, NotFoundError } from "../../errors";
 
 const nameOfFile = "./src/services/storage/channel-build.json";
 

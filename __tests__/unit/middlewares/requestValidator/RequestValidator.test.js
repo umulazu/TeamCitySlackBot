@@ -1,4 +1,4 @@
-import { validationErrorHandler } from "../../../../src/middlewares/requestValidator/RequestValidator";
+import { validationErrorHandler } from "../../../../src/middlewares/requestValidator";
 import { validationResult } from "express-validator";
 
 jest.mock("express-validator");
