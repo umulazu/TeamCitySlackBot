@@ -1,5 +1,9 @@
 import icons from "../../../../src/services/slack/icons";
-import { getChannelId, setTopicToChannel } from "../../../../src/services/slack/slackApi";
+import {
+    getChannelId,
+    setTopicToChannel,
+} from "../../../../src/services/slack/slackApi";
+import { InternalServerError, NotFoundError } from "../../../../src/errors";
 
 let mockListResult;
 let mockSetTopicResult;
@@ -33,7 +37,7 @@ describe("getChannelId", () => {
         expect(channelId).toBe(expectedChannelId);
     });
 
-    it("should return falsy if ok is false", async () => {
+    it("should throw InternalServerError if ok is false", async () => {
         const channelName = "channel_1";
         const expectedChannelId = "id_1";
 
@@ -47,36 +51,36 @@ describe("getChannelId", () => {
             ],
         };
 
-        const channelId = await getChannelId(channelName);
+        const channelId = getChannelId(channelName);
 
-        expect(channelId).toBeFalsy();
+        expect(channelId).rejects.toThrow(InternalServerError);
     });
 
-    it("should return falsy if list() returned null", async () => {
+    it("should throw InternalServerError if list() returned null", async () => {
         const channelName = "channel_1";
 
         mockListResult = null;
 
-        const channelId = await getChannelId(channelName);
+        const channelId = getChannelId(channelName);
 
-        expect(channelId).toBeFalsy();
+        expect(channelId).rejects.toThrow(InternalServerError);
     });
 
-    it("should return falsy if list() returned undefined", async () => {
+    it("should throw InternalServerError if list() returned undefined", async () => {
         const channelName = "channel_1";
 
         mockListResult = undefined;
 
-        const channelId = await getChannelId(channelName);
+        const channelId = getChannelId(channelName);
 
-        expect(channelId).toBeFalsy();
+        expect(channelId).rejects.toThrow(InternalServerError);
     });
 
-    it("should return falsy if specified channel doesn't exist", async () => {
+    it("should throw NotFoundError if specified channel doesn't exist", async () => {
         const channelName = "channel_1";
 
         mockListResult = {
-            ok: false,
+            ok: true,
             channels: [
                 {
                     name: "channel_2",
@@ -85,16 +89,16 @@ describe("getChannelId", () => {
             ],
         };
 
-        const channelId = await getChannelId(channelName);
+        const channelId = getChannelId(channelName);
 
-        expect(channelId).toBeFalsy();
+        expect(channelId).rejects.toThrowError(NotFoundError);
     });
 
-    it("should return falsy if specified channel doesn't have respective id", async () => {
+    it("should throw NotFoundError if specified channel doesn't have respective id", async () => {
         const channelName = "channel_1";
 
         mockListResult = {
-            ok: false,
+            ok: true,
             channels: [
                 {
                     name: "channel_2",
@@ -102,21 +106,21 @@ describe("getChannelId", () => {
             ],
         };
 
-        const channelId = await getChannelId(channelName);
+        const channelId = getChannelId(channelName);
 
-        expect(channelId).toBeFalsy();
+        expect(channelId).rejects.toThrow(NotFoundError);
     });
 });
 
 describe("setTopicToChannel", () => {
-    it("should return truthy", async () => {
+    it("should return undefined if all is OK", async () => {
         const channel = "id_1";
         const buildInfo = {
             build_name: "buildName",
             build_event: "buildEvent",
             build_result: "buildResult",
         };
-        const icon = icons["stopMark"];
+        const icon = icons.stopMark;
 
         mockSetTopicResult = {
             ok: true,
@@ -124,24 +128,24 @@ describe("setTopicToChannel", () => {
 
         const result = await setTopicToChannel(channel, buildInfo, icon);
 
-        expect(result).toBeTruthy();
+        await expect(result).toBeUndefined();
     });
 
-    it("should return falsy", async () => {
+    it("should throw InternalServerError", async () => {
         const channel = "id_1";
         const buildInfo = {
             build_name: "buildName",
             build_event: "buildEvent",
             build_result: "buildResult",
         };
-        const icon = icons["stopMark"];
+        const icon = icons.stopMark;
 
         mockSetTopicResult = {
             ok: false,
         };
 
-        const result = await setTopicToChannel(channel, buildInfo, icon);
+        const result = setTopicToChannel(channel, buildInfo, icon);
 
-        expect(result).toBeFalsy();
+        expect(result).rejects.toThrow(InternalServerError);
     });
 });

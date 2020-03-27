@@ -7,14 +7,14 @@ describe("getIcon", function() {
         // event is not important:
         const event = "";
 
-        expect(getIcon(result, event)).toBe(icons["stopMark"]);
+        expect(getIcon(result, event)).toBe(icons.stopMark);
     });
 
     it("should return Check mark if success", () => {
         const result = "success",
             event = "buildFinished";
 
-        expect(getIcon(result, event)).toBe(icons["checkMark"]);
+        expect(getIcon(result, event)).toBe(icons.checkMark);
     });
 
     it("should return Exclamation mark if failure", () => {
@@ -22,13 +22,13 @@ describe("getIcon", function() {
         // event can be anything except "running":
         const event = "";
 
-        expect(getIcon(result, event)).toBe(icons["exclamationMark"]);
+        expect(getIcon(result, event)).toBe(icons.exclamationMark);
     });
 
     it("should return Question mark if all the rest", () => {
         const result = "",
             event = "";
 
-        expect(getIcon(result, event)).toBe(icons["questionMark"]);
+        expect(getIcon(result, event)).toBe(icons.questionMark);
     });
 });

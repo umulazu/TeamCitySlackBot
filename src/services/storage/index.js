@@ -20,9 +20,11 @@ export const saveToStorage = async (channel, build) => {
 };
 
 export const getChannelByBuildId = async buildId => {
-    const desiredObject = storage.find(element => element["build"] === buildId);
+    const desiredObject = storage.find(element => element.build === buildId);
     if (!desiredObject) {
-        throw new NotFoundError("Please, check build's and channel's names");
+        throw new NotFoundError(
+            `There is no ${buildId}. Please, check build's and channel's names`
+        );
     }
 
     return desiredObject.channel;

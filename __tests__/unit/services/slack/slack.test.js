@@ -5,10 +5,7 @@ import {
 } from "../../../../src/services/slack/slackApi";
 import { setTopic } from "../../../../src/services/slack";
 import icons from "../../../../src/services/slack/icons";
-import {
-    InternalServerError,
-    NotFoundError,
-} from "../../../../src/errors";
+import { InternalServerError, NotFoundError } from "../../../../src/errors";
 
 jest.mock("../../../../src/services/slack/getIcon");
 jest.mock("../../../../src/services/slack/slackApi");
@@ -22,14 +19,16 @@ describe("setTopic", () => {
             build_result: "buildResult",
         };
 
-        getChannelId.mockResolvedValue(false);
+        getChannelId.mockImplementation(() => {
+            throw new NotFoundError("some error");
+        });
 
-        expect(setTopic(buildInfo, channel)).rejects.toThrowError(
+        await expect(setTopic(buildInfo, channel)).rejects.toThrowError(
             NotFoundError
         );
     });
 
-    it("should throw InternalServerError", async () => {
+    it("should throw InternalServerError if it's problem with slack client in setTopicToChannel()", async () => {
         const channel = "id_1";
         const buildInfo = {
             build_name: "buildName",
@@ -37,12 +36,34 @@ describe("setTopic", () => {
             build_result: "buildResult",
         };
 
-        const icon = icons["stopMark"];
+        const icon = icons.stopMark;
         getIcon.mockReturnValue(icon);
-        getChannelId.mockResolvedValue(true);
-        setTopicToChannel.mockResolvedValue(false);
+        getChannelId.mockRestore();
+        setTopicToChannel.mockImplementation(() => {
+            throw new InternalServerError("some error");
+        });
 
-        expect(setTopic(buildInfo, channel)).rejects.toThrowError(
+        await expect(setTopic(buildInfo, channel)).rejects.toThrowError(
+            InternalServerError
+        );
+    });
+
+    it("should throw InternalServerError if it's problem with slack client in getChannelId()", async () => {
+        const channel = "id_1";
+        const buildInfo = {
+            build_name: "buildName",
+            build_event: "buildEvent",
+            build_result: "buildResult",
+        };
+
+        const icon = icons.stopMark;
+        getIcon.mockReturnValue(icon);
+        setTopicToChannel.mockRestore();
+        getChannelId.mockImplementation(() => {
+            throw new InternalServerError("some error");
+        });
+
+        await expect(setTopic(buildInfo, channel)).rejects.toThrowError(
             InternalServerError
         );
     });

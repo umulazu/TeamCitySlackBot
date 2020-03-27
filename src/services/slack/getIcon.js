@@ -5,17 +5,17 @@ export default (result, event) => {
 
     const isRun = /running/.test(result);
     if (isRun) {
-        icon = icons["stopMark"];
+        icon = icons.stopMark;
     } else {
         const isFinishSuccess =
             /success/.test(result) && /buildFinished/.test(event);
         if (isFinishSuccess) {
-            icon = icons["checkMark"];
+            icon = icons.checkMark;
         } else {
             const isFailure = /failure/.test(result);
             icon = isFailure
-                ? icons["exclamationMark"]
-                : icons["questionMark"];
+                ? icons.exclamationMark
+                : icons.questionMark;
         }
     }
 

@@ -1,4 +1,5 @@
-import getBuildNameFromUrl from "../../../../src/middlewares/requestValidator/getBuildNameFromUrl";
+import getBuildNameFromUrl from "../../../src/utilities/getBuildNameFromUrl";
+import { BadRequestError } from "../../../src/errors";
 
 describe("getBuildNameFromUrl", () => {
     it("should return BuildName", () => {
@@ -16,8 +17,8 @@ describe("getBuildNameFromUrl", () => {
         "http://192.168.21.178:81/viewLog.html?buildId=206",
         "http://192.168.21.178:81/viewLog.html?buildTypeId&buildId=206",
         "http://192.168.21.178:81/viewLog.html?buildTypeId=&buildId=206",
-        "http://192.168.21.178:81/viewLog.html?buildTypeId=1&buildId=206&buildTypeId=1",
-    ])("should return falsy values", url => {
-        expect(getBuildNameFromUrl(url)).toBeFalsy();
+        "http://192.168.21.178:81/viewLog.html?buildTypeId=1&buildId=206&buildTypeId=2",
+    ])("should throw BadRequestError values", url => {
+        expect(() => getBuildNameFromUrl(url)).toThrowError(BadRequestError);
     });
 });

@@ -1,6 +1,4 @@
 import { body } from "express-validator";
-import getBuildNameFromUrl from "./getBuildNameFromUrl";
-import { BadRequestError } from "../../errors";
 
 export const teamcityWebhookValidation = [
     body([
@@ -14,14 +12,6 @@ export const teamcityWebhookValidation = [
         .exists({ checkFalsy: true })
         .bail()
         .isURL()
-        .customSanitizer(url => {
-            const buildId = getBuildNameFromUrl(url);
-            if (!buildId) {
-                throw new BadRequestError("Please, check build's name!");
-            }
-
-            return buildId;
-        }),
 ];
 
 export const addBuildToChannelValidation = [

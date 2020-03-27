@@ -1,16 +1,14 @@
 import { WebClient } from "@slack/web-api";
+import { InternalServerError, NotFoundError } from "../../errors";
 
 const webClient = new WebClient(process.env.SLACK_BOT_TOKEN);
-// possible variant 1:
-// export const webClient = new WebClient(process.env.SLACK_BOT_TOKEN);
 
 export const getChannelId = async channelName => {
-    // possible variant 2:
-    // const webClient = new WebClient(process.env.SLACK_BOT_TOKEN);
-
     const result = await webClient.conversations.list();
     if (!result || !result.ok) {
-        return;
+        throw new InternalServerError(
+            "Slack client is not answered! Repeat request later."
+        );
     }
 
     const listOfChannels = result.channels;
@@ -19,7 +17,13 @@ export const getChannelId = async channelName => {
         channel => channel.name === channelName
     );
 
-    return channel && channel.id;
+    if (channel && channel.id) {
+        return channel.id;
+    } else {
+        throw new NotFoundError(
+            `There is no ${channelName}. Please, check for channel name's updates.`
+        );
+    }
 };
 
 export const setTopicToChannel = async (channel, buildInfo, icon) => {
@@ -30,5 +34,9 @@ export const setTopicToChannel = async (channel, buildInfo, icon) => {
         topic: `${icon} ${build_name} on ${build_event}: ${build_result}`,
     });
 
-    return result && result.ok;
+    if (!(result && result.ok)) {
+        throw new InternalServerError(
+            "Topic hasn't been set! Repeat request later."
+        );
+    }
 };
