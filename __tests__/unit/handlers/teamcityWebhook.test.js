@@ -3,7 +3,7 @@ import * as slack from "../../../src/services/slack";
 import teamcityWebhook from "../../../src/handlers/teamcityWebhook";
 import getBuildNameFromUrl from "../../../src/utilities/getBuildNameFromUrl";
 
-jest.mock("../../../src/services/storage");
+jest.mock("../../../src/services/storage/channelBuild");
 jest.mock("../../../src/services/slack");
 jest.mock("../../../src/utilities/getBuildNameFromUrl");
 console.log = jest.fn();

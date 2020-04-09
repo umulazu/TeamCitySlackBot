@@ -1,7 +1,7 @@
 import * as storage from "../../../src/services/storage/channelBuild";
 import addBuildToChannel from "../../../src/handlers/addBuildToChannel";
 
-jest.mock("../../../src/services/storage");
+jest.mock("../../../src/services/storage/channelBuild");
 
 describe("addBuildToChannel", () => {
     it("should send status 200", async () => {

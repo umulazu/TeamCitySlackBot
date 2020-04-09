@@ -1,43 +1,16 @@
-import icons from "./icons";
+import { statuses, statusIconMap } from "./mapper";
 
 export default (result, event, previousResult) => {
     let icon;
-    
-// todo: restructure:
-    const isFailure = /failure/.test(result);
-    if (isFailure) {
-        icon = icons.stopMark;
-    } else {
-        const isRun = /running/.test(result);
-        if (isRun) {
-            const isInterrupted = /buildInterrupted/.test(event);
-            if (isInterrupted) {
-                const isPreviousSuccess = /success/.test(previousResult);
-                icon = isPreviousSuccess ? icons.checkMark : icons.stopMark;
-            } else {
-                icon = icons.stopMark;
-            }
-        } else {
-            const isSuccess = /success/.test(result);
-            icon = isSuccess ? icons.checkMark : icons.questionMark;
-        }
-    }
 
-    // const isRun = /running/.test(result);
-    // if (isRun) {
-    //     icon = icons.stopMark;
-    // } else {
-    //     const isFinishSuccess =
-    //         /success/.test(result) && /buildFinished/.test(event);
-    //     if (isFinishSuccess) {
-    //         icon = icons.checkMark;
-    //     } else {
-    //         const isFailure = /failure/.test(result);
-    //         icon = isFailure
-    //             ? icons.exclamationMark
-    //             : icons.questionMark;
-    //     }
-    // }
+    const isFailure = /failure/.test(result) && statuses.isFailure;
+    const isRun = /running/.test(result) && statuses.isRun;
+    const isInterrupted = /buildInterrupted/.test(event) && statuses.isInterrupted;
+    const isPreviousSuccess = isInterrupted ? /success/.test(previousResult) && statuses.isPreviousSuccess : false;
+    const isSuccess = /success/.test(result) && statuses.isSuccess;
+
+    const concatStatuses = isFailure | isRun | isInterrupted | isPreviousSuccess | isSuccess;
+    icon = statusIconMap[concatStatuses];
 
     return icon;
 };

@@ -260,7 +260,7 @@ describe("deleteMessage", () => {
         const channel = "id_1";
         const ts = 123;
 
-        mockHistoryResult = {
+        mockDeleteResult = {
             ok: false,
         };
 
