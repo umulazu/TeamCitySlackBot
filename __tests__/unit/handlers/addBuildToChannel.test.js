@@ -1,4 +1,4 @@
-import * as storage from "../../../src/services/storage";
+import * as storage from "../../../src/services/storage/channelBuild";
 import addBuildToChannel from "../../../src/handlers/addBuildToChannel";
 
 jest.mock("../../../src/services/storage");

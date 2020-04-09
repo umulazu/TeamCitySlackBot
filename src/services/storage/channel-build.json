@@ -1,4 +1,13 @@
 [
-  { "channel": "back-end-test", "build": "PortalForStudents_BackEnd_Test" },
-  { "channel": "front-end-test", "build": "PortalForStudents_FrontEnd_Test" }
+    { "channel": "back-end-test", "build": "PortalForStudents_BackEnd_Test" },
+    { "channel": "portalforstudents_frontend", "build": "PortalForStudents_FrontEnd_Test" },
+    { "channel": "front-end-test", "build": "PortalForStudents_FrontEnd_Test" },
+    {
+        "channel": "portalforstudents_frontend",
+        "build": "PortalForStudents_FrontEnd_ProdBuild"
+    },
+    {
+        "channel": "portalforstudents_frontend",
+        "build": "PortalForStudents_FrontEnd_Testing123"
+    }
 ]

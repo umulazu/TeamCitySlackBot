@@ -1,5 +1,5 @@
 import express from "express";
-import { validationErrorHandler } from "./middlewares/requestValidator";
+import { validationErrorMiddleware } from "./middlewares/requestValidator";
 import {
     addBuildToChannelValidation,
     teamcityWebhookValidation,
@@ -19,14 +19,14 @@ app.get("/test", (req, res) => {
 app.post(
     "/add-build-to-channel",
     addBuildToChannelValidation,
-    validationErrorHandler,
+    validationErrorMiddleware,
     asyncHandler(addBuildToChannel)
 );
 
 app.post(
     "/teamcity-webhook",
     teamcityWebhookValidation,
-    validationErrorHandler,
+    validationErrorMiddleware,
     asyncHandler(teamcityWebhook)
 );
 

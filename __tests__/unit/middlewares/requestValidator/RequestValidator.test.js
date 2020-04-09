@@ -1,4 +1,4 @@
-import { validationErrorHandler } from "../../../../src/middlewares/requestValidator";
+import { validationErrorMiddleware } from "../../../../src/middlewares/requestValidator";
 import { validationResult } from "express-validator";
 
 jest.mock("express-validator");
@@ -17,7 +17,7 @@ describe("RequestValidatorMiddleware", () => {
         const next = jest.fn();
 
         expect(() => {
-            validationErrorHandler(null, null, next);
+            validationErrorMiddleware(null, null, next);
         }).toThrowError();
 
         expect(next).not.toHaveBeenCalled();
@@ -36,7 +36,7 @@ describe("RequestValidatorMiddleware", () => {
         const next = jest.fn();
 
         expect(() => {
-            validationErrorHandler(null, null, next);
+            validationErrorMiddleware(null, null, next);
         }).not.toThrowError();
 
         expect(next).toHaveBeenCalled();
