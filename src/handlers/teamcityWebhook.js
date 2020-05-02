@@ -1,7 +1,10 @@
-import { getChannelByBuildId } from "../services/storage/channelBuild";
 import { setTopic } from "../services/slack";
 import getBuildNameFromUrl from "../utilities/getBuildNameFromUrl";
-import { saveFailureBuild, willTopicSet } from "../services/storage/closedChannels";
+import {
+    getChannelByBuildId,
+    saveFailureBuild,
+    willTopicSet,
+} from "../services/storage";
 
 export default async (req, res) => {
     const buildInfo = req.body;
@@ -9,7 +12,11 @@ export default async (req, res) => {
     const buildId = getBuildNameFromUrl(buildInfo.build_status_url);
     const channelName = await getChannelByBuildId(buildId);
 
-    const result = await willTopicSet(channelName, buildId, isSuccess(buildInfo.build_result));
+    const result = await willTopicSet(
+        channelName,
+        buildId,
+        isSuccess(buildInfo.build_result)
+    );
     if (result) {
         await setTopic(buildInfo, channelName);
         console.log("Topic was set");
@@ -24,5 +31,5 @@ export default async (req, res) => {
     await res.sendStatus(200);
 };
 
-const isSuccess = (buildResult) => /success/.test(buildResult);
-const isFailure = (buildResult) => /failure/.test(buildResult);
+const isSuccess = buildResult => /success/.test(buildResult);
+const isFailure = buildResult => /failure/.test(buildResult);

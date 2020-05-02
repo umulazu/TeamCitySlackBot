@@ -1,9 +1,9 @@
-import { saveToStorage } from "../services/storage/channelBuild";
+import { saveChannelBuild } from "../services/storage/";
 
 export default async (req, res) => {
     const { buildName, channelName } = req.body;
 
-    await saveToStorage(channelName, buildName);
+    await saveChannelBuild(channelName, buildName);
 
     await res.sendStatus(200);
 }

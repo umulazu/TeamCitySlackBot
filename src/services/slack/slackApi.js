@@ -1,7 +1,31 @@
 import { WebClient } from "@slack/web-api";
 import { InternalServerError, NotFoundError } from "../../errors";
+// import stenos from "../../../__tests__/integration/steno.config";
 
-const webClient = new WebClient(process.env.SLACK_BOT_TOKEN);
+let webClient;
+let userToken;
+// const steno = stenos["FAKE_BOT_TOKEN"];
+
+switch (process.env.NODE_ENV) {
+    case ("test_record"):
+        webClient = new WebClient(process.env.SLACK_BOT_TOKEN, {
+            slackApiUrl: process.env.FAKE_API_URL
+        });
+        userToken = process.env.SLACK_USER_TOKEN;
+
+        break;
+    case ("test"):
+        webClient = new WebClient(process.env.FAKE_BOT_TOKEN, {
+            slackApiUrl: process.env.FAKE_API_URL
+        });
+        userToken = process.env.FAKE_USER_TOKEN;
+
+        break;
+    default:
+        webClient = new WebClient(process.env.SLACK_BOT_TOKEN);
+        userToken = process.env.SLACK_USER_TOKEN;
+}
+
 
 export const getChannelId = async channelName => {
     const result = await webClient.conversations.list();
@@ -34,8 +58,7 @@ export const setTopicToChannel = async (channel, buildInfo, icon) => {
     const isInterrupted = build_event === "buildInterrupted";
     const status = isInterrupted ? build_result_previous : build_result;
 
-    const topic = `${icon} ${build_name} on ${build_event}: ${status}`;
-
+    const topic = `${icon}${build_name}-${build_event}:${status}`;
     const result = await webClient.conversations.setTopic({
         channel,
         topic,
@@ -66,7 +89,7 @@ export const getTopicMessageTimestamp = async (channel, startTimestamp) => {
 };
 
 export const deleteMessage = async (channel, ts) => {
-    const token = process.env.SLACK_USER_TOKEN;
+    const token = userToken;
 
     const result = await webClient.chat.delete({
         token,

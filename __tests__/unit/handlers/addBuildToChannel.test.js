@@ -1,7 +1,7 @@
-import * as storage from "../../../src/services/storage/channelBuild";
+import * as storage from "../../../src/services/storage";
 import addBuildToChannel from "../../../src/handlers/addBuildToChannel";
 
-jest.mock("../../../src/services/storage/channelBuild");
+jest.mock("../../../src/services/storage");
 
 describe("addBuildToChannel", () => {
     it("should send status 200", async () => {
@@ -17,11 +17,11 @@ describe("addBuildToChannel", () => {
             sendStatus: jest.fn(),
         };
 
-        storage.saveToStorage.mockImplementation();
+        storage.saveChannelBuild.mockImplementation();
 
         await addBuildToChannel(req, res);
 
-        expect(storage.saveToStorage).toHaveBeenCalledWith(
+        expect(storage.saveChannelBuild).toHaveBeenCalledWith(
             channelName,
             buildName
         );
@@ -41,7 +41,7 @@ describe("addBuildToChannel", () => {
             sendStatus: jest.fn(),
         };
 
-        storage.saveToStorage.mockImplementation(() => {
+        storage.saveChannelBuild.mockImplementation(() => {
             throw new Error("some error");
         });
 

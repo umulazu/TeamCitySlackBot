@@ -1,31 +1,45 @@
 {
-    "name": "slackbot",
-    "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
-    "engines": {
-        "node": "10.9.0"
-    },
-    "scripts": {
-        "start": "node index.js",
-        "test": "jest"
-    },
-    "babel": {
-        "plugins": [
-            "transform-es2015-modules-commonjs"
-        ]
-    },
-    "author": "",
-    "license": "ISC",
-    "dependencies": {
-        "@slack/web-api": "^5.8.0",
-        "dotenv": "^8.2.0",
-        "esm": "^3.2.25",
-        "express": "^4.17.1",
-        "express-validator": "^6.4.0"
-    },
-    "devDependencies": {
-        "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
-        "jest": "^25.3.0"
-    }
+  "name": "slackbot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "engines": {
+    "node": "10.9.0"
+  },
+  "scripts": {
+    "start_app": "node index.js",
+
+    "test": "npm run test:unit & npm run test:integration",
+
+    "test:unit": "jest __tests__/unit",
+
+    "test:integration": "concurrently -k -s first \"npm:steno:replay\" \"npm:integration_tests\"",
+    "steno:replay": " node __tests__/stenoStart.js replay",
+    "integration_tests": "wait-on tcp:127.0.0.1:4000 && set PORT=9001&& jest __tests__/integration",
+
+    "steno:record": "node __tests__/stenoStart.js record",
+    "start_app:record": "set NODE_ENV=test_record&& node index.js"
+  },
+  "babel": {
+    "plugins": [
+      "transform-es2015-modules-commonjs"
+    ]
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@slack/web-api": "^5.8.0",
+    "dotenv": "^8.2.0",
+    "esm": "^3.2.25",
+    "express": "^4.17.1",
+    "express-validator": "^6.4.0",
+    "supertest": "^4.0.2"
+  },
+  "devDependencies": {
+    "axios": "^0.19.2",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
+    "concurrently": "^5.2.0",
+    "jest": "^25.3.0",
+    "wait-on": "^5.0.0"
+  }
 }

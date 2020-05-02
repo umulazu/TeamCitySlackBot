@@ -1,0 +1,25 @@
+[
+    { "channel": "back-end-test", "build": "PortalForStudents_BackEnd_Test" },
+    {
+        "channel": "portalforstudents_frontend",
+        "build": "PortalForStudents_FrontEnd_Test"
+    },
+    { "channel": "front-end-test", "build": "PortalForStudents_FrontEnd_Test" },
+    {
+        "channel": "portalforstudents_frontend",
+        "build": "PortalForStudents_FrontEnd_ProdBuild"
+    },
+    {
+        "channel": "portalforstudents_frontend",
+        "build": "PortalForStudents_FrontEnd_Testing123"
+    },
+    {
+        "channel": "portalforstudents_frontend",
+        "build": "PortalForStudents_FrontEnd_InstallPackages"
+    },
+    { "channel": "portalforstudents_frontend", "build": "New_Build" },
+    { "channel": "for_slackbot_tests", "build": "ForSlackBotTests_InstallPackages" },
+    { "channel": "for_slackbot_tests", "build": "ForSlackBotTests_ProdBuild" },
+    { "channel": "for_slackbot_tests", "build": "ForSlackBotTests_Test" },
+    { "channel": "for_slackbot_tests", "build": "ForTests_Testing123" }
+]
