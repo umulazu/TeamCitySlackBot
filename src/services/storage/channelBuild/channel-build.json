@@ -21,5 +21,6 @@
     { "channel": "for_slackbot_tests", "build": "ForSlackBotTests_InstallPackages" },
     { "channel": "for_slackbot_tests", "build": "ForSlackBotTests_ProdBuild" },
     { "channel": "for_slackbot_tests", "build": "ForSlackBotTests_Test" },
-    { "channel": "for_slackbot_tests", "build": "ForTests_Testing123" }
+    { "channel": "for_slackbot_tests", "build": "ForTests_Testing123" },
+    { "channel": "bots", "build": "Test_123" }
 ]

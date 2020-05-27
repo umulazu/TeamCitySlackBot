@@ -1,0 +1,31 @@
+[
+    {
+        "scenario": "set_topic_2_times_1_build",
+        "apiCalls": [
+            {
+                "request": {
+                    "method": "/api/conversations.list",
+                    "token": "fake_bot_token"
+                },
+                "response": {
+                    "body": {
+                        "ok": true
+                    }
+                }
+            },
+            {
+                "request": {
+                    "method": "/api/conversations.setTopic",
+                    "token": "fake_bot_token",
+                    "channel": "C013L3KD95F",
+                    "topic": "%F0%9F%9B%91ProdBuild-buildStarted%3Arunning"
+                },
+                "response": {
+                    "body": {
+                        "ok": true
+                    }
+                }
+            }
+        ]
+    }
+]

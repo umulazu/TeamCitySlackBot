@@ -12,6 +12,11 @@ jest.mock(
     "../../../../src/services/storage/closedChannels/closed-channels.json"
 );
 
+// could be turn on for debugging:
+// console.log = jest.fn();
+console.error = jest.fn();
+console.warn = jest.fn();
+
 beforeEach(() => {
     closedChannelsStorage.splice(0);
 });
@@ -446,14 +451,27 @@ const teamcityHandlerWithScenarioCheck = async (scenario, requests, expectedInte
     const endPoint = "/teamcity-webhook";
 
     for (let i = 0; i < requests.length; i++) {
-        await request(app)
+        const result = await request(app)
             .post(endPoint)
             .send(requests[i]);
     }
 
     const { data } = await stopReplay();
 
+    console.log(data.interactions);
     expect(data.interactions.length).toBe(expectedInteractionsCount);
     expect(data.meta.unmatchedCount.incoming).toBe(0);
     expect(data.meta.unmatchedCount.outgoing).toBe(0);
 };
+
+// сделать проверки в каждом тесте более детальными. или передавать в универсальную функцию teamcityHandlerWithScenarioCheck еще и эталон.
+//  сравнивать и хранить в diff поля request{} и response{ body: { "ok": true } }
+
+// мб, в snapshots.json хранить сразу конкатенированную строку???
+
+
+// ожидаем список с interactions к данному сценарию, а получаем текущий список interactions.
+// тогда по нему можно будет понять, какие interactions произошли, и на каком остановились.
+// <- проверяем это с помощью jest-diff.
+// IF you want to update old scenario, please run npm script:
+// concurrently -k -s first "npm:steno:record --scenario-name имя_сценария" "npm:start_app:record" "node updateScenario.js имя_сценария(без аргументов -> все сценарии)"

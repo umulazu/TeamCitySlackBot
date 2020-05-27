@@ -1,5 +1,6 @@
 import { WebClient } from "@slack/web-api";
 import { InternalServerError, NotFoundError } from "../../errors";
+import retryPolicies from "@slack/web-api/dist/retry-policies";
 // import stenos from "../../../__tests__/integration/steno.config";
 
 let webClient;
@@ -16,9 +17,10 @@ switch (process.env.NODE_ENV) {
         break;
     case ("test"):
         webClient = new WebClient(process.env.FAKE_BOT_TOKEN, {
-            slackApiUrl: process.env.FAKE_API_URL
+            slackApiUrl: process.env.FAKE_API_URL,
+            retryConfig: retryPolicies.rapidRetryPolicy
         });
-        userToken = process.env.FAKE_USER_TOKEN;
+        userToken = process.env.FAKE_BOT_TOKEN;
 
         break;
     default:
@@ -29,6 +31,7 @@ switch (process.env.NODE_ENV) {
 
 export const getChannelId = async channelName => {
     const result = await webClient.conversations.list();
+
     checkResult(result, "Slack client is not answered! Repeat request later.");
 
     const listOfChannels = result.channels;
