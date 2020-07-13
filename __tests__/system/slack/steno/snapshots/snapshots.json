@@ -1,0 +1,463 @@
+[
+    {
+        "scenario": "set_topic_singly",
+        "botApiMessages": [
+            {
+                "request": {
+                    "build_start_time": "2020-05-04T16:44:15.214+03:00",
+                    "timestamp": "2020-05-04T16:44:19.423+03:00",
+                    "build_event": "buildStarted",
+                    "build_name": "Test",
+                    "build_status_url": "http://192.168.21.178:81/viewLog.html?buildTypeId=PortalForStudents_FrontEnd_Test&buildId=1805",
+                    "build_number": "133",
+                    "triggered_by": "admin",
+                    "build_result": "running",
+                    "build_result_previous": "success",
+                    "build_result_delta": "unknown",
+                    "scenario": "set_topic_singly"
+                },
+                "response": { "statusCode": 200, "text": "OK" }
+            }
+        ]
+    },
+    {
+        "scenario": "set_topic_2_times_1_build",
+        "botApiMessages": [
+            {
+                "request": {
+                    "build_start_time": "2020-05-08T22:04:22.967+03:00",
+                    "timestamp": "2020-05-08T22:04:48.756+03:00",
+                    "build_event": "buildStarted",
+                    "build_name": "ProdBuild",
+                    "build_status_url": "http://192.168.21.178:81/viewLog.html?buildTypeId=ForSlackBotTests_ProdBuild&buildId=1831",
+                    "build_number": "25",
+                    "triggered_by": "admin",
+                    "build_result": "running",
+                    "build_result_previous": "failure",
+                    "build_result_delta": "unknown",
+                    "scenario": "set_topic_2_times_1_build"
+                },
+                "response": { "statusCode": 200, "text": "OK" }
+            },
+            {
+                "request": {
+                    "build_start_time": "2020-05-08T22:04:50.957+03:00",
+                    "timestamp": "2020-05-08T22:05:00.172+03:00",
+                    "build_finish_time": "2020-05-08T22:05:00.172+03:00",
+                    "build_event": "buildFinished",
+                    "build_name": "ProdBuild",
+                    "build_status_url": "http://192.168.21.178:81/viewLog.html?buildTypeId=ForSlackBotTests_ProdBuild&buildId=1831",
+                    "build_number": "25",
+                    "triggered_by": "admin",
+                    "build_result": "failure",
+                    "build_result_previous": "failure",
+                    "build_result_delta": "unchanged",
+                    "scenario": "set_topic_2_times_1_build"
+                },
+                "response": { "statusCode": 200, "text": "OK" }
+            },
+            {
+                "request": {
+                    "build_start_time": "2020-05-08T22:05:33.555+03:00",
+                    "timestamp": "2020-05-08T22:05:36.231+03:00",
+                    "build_event": "buildStarted",
+                    "build_name": "ProdBuild",
+                    "build_status_url": "http://192.168.21.178:81/viewLog.html?buildTypeId=ForSlackBotTests_ProdBuild&buildId=1832",
+                    "build_number": "26",
+                    "triggered_by": "admin",
+                    "build_result": "running",
+                    "build_result_previous": "failure",
+                    "build_result_delta": "unknown",
+                    "scenario": "set_topic_2_times_1_build"
+                },
+                "response": { "statusCode": 200, "text": "OK" }
+            },
+            {
+                "request": {
+                    "build_start_time": "2020-05-08T22:05:37.745+03:00",
+                    "timestamp": "2020-05-08T22:05:48.451+03:00",
+                    "build_finish_time": "2020-05-08T22:05:48.451+03:00",
+                    "build_event": "buildFinished",
+                    "build_name": "ProdBuild",
+                    "build_status_url": "http://192.168.21.178:81/viewLog.html?buildTypeId=ForSlackBotTests_ProdBuild&buildId=1832",
+                    "build_number": "26",
+                    "triggered_by": "admin",
+                    "build_result": "failure",
+                    "build_result_previous": "failure",
+                    "build_result_delta": "unchanged",
+                    "scenario": "set_topic_2_times_1_build"
+                },
+                "response": { "statusCode": 200, "text": "OK" }
+            }
+        ]
+    },
+    {
+        "scenario": "set_topic_3_times_2_builds",
+        "botApiMessages": [
+            {
+                "request": {
+                    "build_start_time": "2020-05-08T22:34:07.525+03:00",
+                    "timestamp": "2020-05-08T22:34:17.002+03:00",
+                    "build_event": "buildStarted",
+                    "build_name": "ProdBuild",
+                    "build_status_url": "http://192.168.21.178:81/viewLog.html?buildTypeId=ForSlackBotTests_ProdBuild&buildId=1838",
+                    "build_number": "32",
+                    "triggered_by": "admin",
+                    "build_result": "running",
+                    "build_result_previous": "failure",
+                    "build_result_delta": "unknown",
+                    "scenario": "set_topic_3_times_2_builds"
+                },
+                "response": { "statusCode": 200, "text": "OK" }
+            },
+            {
+                "request": {
+                    "build_start_time": "2020-05-08T22:34:18.284+03:00",
+                    "timestamp": "2020-05-08T22:34:29.367+03:00",
+                    "build_finish_time": "2020-05-08T22:34:29.367+03:00",
+                    "build_event": "buildFinished",
+                    "build_name": "ProdBuild",
+                    "build_status_url": "http://192.168.21.178:81/viewLog.html?buildTypeId=ForSlackBotTests_ProdBuild&buildId=1838",
+                    "build_number": "32",
+                    "triggered_by": "admin",
+                    "build_result": "failure",
+                    "build_result_previous": "failure",
+                    "build_result_delta": "unchanged",
+                    "scenario": "set_topic_3_times_2_builds"
+                },
+                "response": { "statusCode": 200, "text": "OK" }
+            },
+            {
+                "request": {
+                    "build_start_time": "2020-05-08T22:36:05.617+03:00",
+                    "timestamp": "2020-05-08T22:36:05.640+03:00",
+                    "build_event": "buildStarted",
+                    "build_name": "ProdBuild",
+                    "build_status_url": "http://192.168.21.178:81/viewLog.html?buildTypeId=ForSlackBotTests_ProdBuild&buildId=1839",
+                    "build_number": "33",
+                    "triggered_by": "admin",
+                    "build_result": "running",
+                    "build_result_previous": "failure",
+                    "build_result_delta": "unknown",
+                    "scenario": "set_topic_3_times_2_builds"
+                },
+                "response": { "statusCode": 200, "text": "OK" }
+            },
+            {
+                "request": {
+                    "build_start_time": "2020-05-08T22:36:06.962+03:00",
+                    "timestamp": "2020-05-08T22:36:30.053+03:00",
+                    "build_finish_time": "2020-05-08T22:36:30.053+03:00",
+                    "build_event": "buildFinished",
+                    "build_name": "ProdBuild",
+                    "build_status_url": "http://192.168.21.178:81/viewLog.html?buildTypeId=ForSlackBotTests_ProdBuild&buildId=1839",
+                    "build_number": "33",
+                    "triggered_by": "admin",
+                    "build_result": "success",
+                    "build_result_previous": "failure",
+                    "build_result_delta": "fixed",
+                    "scenario": "set_topic_3_times_2_builds"
+                },
+                "response": { "statusCode": 200, "text": "OK" }
+            }
+        ]
+    },
+    {
+        "scenario": "set_topic_2_times_2_builds",
+        "botApiMessages": [
+            {
+                "request": {
+                    "build_start_time": "2020-05-09T11:35:03.146+03:00",
+                    "timestamp": "2020-05-09T11:35:09.408+03:00",
+                    "build_event": "buildStarted",
+                    "build_name": "ProdBuild",
+                    "build_status_url": "http://192.168.21.178:81/viewLog.html?buildTypeId=ForSlackBotTests_ProdBuild&buildId=1840",
+                    "build_number": "34",
+                    "triggered_by": "admin",
+                    "build_result": "running",
+                    "build_result_previous": "success",
+                    "build_result_delta": "unknown",
+                    "scenario": "set_topic_2_times_2_builds"
+                },
+                "response": { "statusCode": 200, "text": "OK" }
+            },
+            {
+                "request": {
+                    "build_start_time": "2020-05-09T11:35:10.666+03:00",
+                    "timestamp": "2020-05-09T11:35:22.040+03:00",
+                    "build_finish_time": "2020-05-09T11:35:22.040+03:00",
+                    "build_event": "buildFinished",
+                    "build_name": "ProdBuild",
+                    "build_status_url": "http://192.168.21.178:81/viewLog.html?buildTypeId=ForSlackBotTests_ProdBuild&buildId=1840",
+                    "build_number": "34",
+                    "triggered_by": "admin",
+                    "build_result": "failure",
+                    "build_result_previous": "success",
+                    "build_result_delta": "broken",
+                    "scenario": "set_topic_2_times_2_builds"
+                },
+                "response": { "statusCode": 200, "text": "OK" }
+            },
+            {
+                "request": {
+                    "build_start_time": "2020-05-09T11:35:39.318+03:00",
+                    "timestamp": "2020-05-09T11:35:39.337+03:00",
+                    "build_event": "buildStarted",
+                    "build_name": "Test",
+                    "build_status_url": "http://192.168.21.178:81/viewLog.html?buildTypeId=ForSlackBotTests_Test&buildId=1841",
+                    "build_number": "145",
+                    "triggered_by": "admin",
+                    "build_result": "running",
+                    "build_result_previous": "success",
+                    "build_result_delta": "unknown",
+                    "scenario": "set_topic_2_times_2_builds"
+                },
+                "response": { "statusCode": 200, "text": "OK" }
+            },
+            {
+                "request": {
+                    "build_start_time": "2020-05-09T11:35:40.480+03:00",
+                    "timestamp": "2020-05-09T11:36:01.965+03:00",
+                    "build_finish_time": "2020-05-09T11:36:01.965+03:00",
+                    "build_event": "buildFinished",
+                    "build_name": "Test",
+                    "build_status_url": "http://192.168.21.178:81/viewLog.html?buildTypeId=ForSlackBotTests_Test&buildId=1841",
+                    "build_number": "145",
+                    "triggered_by": "admin",
+                    "build_result": "success",
+                    "build_result_previous": "success",
+                    "build_result_delta": "unchanged",
+                    "scenario": "set_topic_2_times_2_builds"
+                },
+                "response": { "statusCode": 200, "text": "OK" }
+            }
+        ]
+    },
+    {
+        "scenario": "set_topic_3_times_3_builds",
+        "botApiMessages": [
+            {
+                "request": {
+                    "build_start_time": "2020-05-09T20:22:46.319+03:00",
+                    "timestamp": "2020-05-09T20:22:49.170+03:00",
+                    "build_event": "buildStarted",
+                    "build_name": "ProdBuild",
+                    "build_status_url": "http://192.168.21.178:81/viewLog.html?buildTypeId=ForSlackBotTests_ProdBuild&buildId=1849",
+                    "build_number": "38",
+                    "triggered_by": "admin",
+                    "build_result": "running",
+                    "build_result_previous": "success",
+                    "build_result_delta": "unknown",
+                    "scenario": "set_topic_3_times_3_builds"
+                },
+                "response": { "statusCode": 200, "text": "OK" }
+            },
+            {
+                "request": {
+                    "build_start_time": "2020-05-09T20:22:50.716+03:00",
+                    "timestamp": "2020-05-09T20:23:01.361+03:00",
+                    "build_finish_time": "2020-05-09T20:23:01.361+03:00",
+                    "build_event": "buildFinished",
+                    "build_name": "ProdBuild",
+                    "build_status_url": "http://192.168.21.178:81/viewLog.html?buildTypeId=ForSlackBotTests_ProdBuild&buildId=1849",
+                    "build_number": "38",
+                    "triggered_by": "admin",
+                    "build_result": "failure",
+                    "build_result_previous": "success",
+                    "build_result_delta": "broken",
+                    "scenario": "set_topic_3_times_3_builds"
+                },
+                "response": { "statusCode": 200, "text": "OK" }
+            },
+            {
+                "request": {
+                    "build_start_time": "2020-05-09T20:23:23.182+03:00",
+                    "timestamp": "2020-05-09T20:23:23.203+03:00",
+                    "build_event": "buildStarted",
+                    "build_name": "testing123",
+                    "build_status_url": "http://192.168.21.178:81/viewLog.html?buildTypeId=ForTests_Testing123&buildId=1850",
+                    "build_number": "31",
+                    "triggered_by": "admin",
+                    "build_result": "running",
+                    "build_result_previous": "success",
+                    "build_result_delta": "unknown",
+                    "scenario": "set_topic_3_times_3_builds"
+                },
+                "response": { "statusCode": 200, "text": "OK" }
+            },
+            {
+                "request": {
+                    "build_start_time": "2020-05-09T20:23:27.169+03:00",
+                    "timestamp": "2020-05-09T20:23:33.752+03:00",
+                    "build_finish_time": "2020-05-09T20:23:33.752+03:00",
+                    "build_event": "buildFinished",
+                    "build_name": "testing123",
+                    "build_status_url": "http://192.168.21.178:81/viewLog.html?buildTypeId=ForTests_Testing123&buildId=1850",
+                    "build_number": "31",
+                    "triggered_by": "admin",
+                    "build_result": "failure",
+                    "build_result_previous": "success",
+                    "build_result_delta": "broken",
+                    "scenario": "set_topic_3_times_3_builds"
+                },
+                "response": { "statusCode": 200, "text": "OK" }
+            },
+            {
+                "request": {
+                    "build_start_time": "2020-05-09T20:23:41.965+03:00",
+                    "timestamp": "2020-05-09T20:23:41.990+03:00",
+                    "build_event": "buildStarted",
+                    "build_name": "Test",
+                    "build_status_url": "http://192.168.21.178:81/viewLog.html?buildTypeId=ForSlackBotTests_Test&buildId=1851",
+                    "build_number": "147",
+                    "triggered_by": "admin",
+                    "build_result": "running",
+                    "build_result_previous": "success",
+                    "build_result_delta": "unknown",
+                    "scenario": "set_topic_3_times_3_builds"
+                },
+                "response": { "statusCode": 200, "text": "OK" }
+            },
+            {
+                "request": {
+                    "build_start_time": "2020-05-09T20:23:43.213+03:00",
+                    "timestamp": "2020-05-09T20:24:03.912+03:00",
+                    "build_finish_time": "2020-05-09T20:24:03.912+03:00",
+                    "build_event": "buildFinished",
+                    "build_name": "Test",
+                    "build_status_url": "http://192.168.21.178:81/viewLog.html?buildTypeId=ForSlackBotTests_Test&buildId=1851",
+                    "build_number": "147",
+                    "triggered_by": "admin",
+                    "build_result": "success",
+                    "build_result_previous": "success",
+                    "build_result_delta": "unchanged",
+                    "scenario": "set_topic_3_times_3_builds"
+                },
+                "response": { "statusCode": 200, "text": "OK" }
+            },
+            {
+                "request": {
+                    "build_start_time": "2020-05-09T20:24:30.523+03:00",
+                    "timestamp": "2020-05-09T20:24:30.545+03:00",
+                    "build_event": "buildStarted",
+                    "build_name": "ProdBuild",
+                    "build_status_url": "http://192.168.21.178:81/viewLog.html?buildTypeId=ForSlackBotTests_ProdBuild&buildId=1852",
+                    "build_number": "39",
+                    "triggered_by": "admin",
+                    "build_result": "running",
+                    "build_result_previous": "failure",
+                    "build_result_delta": "unknown",
+                    "scenario": "set_topic_3_times_3_builds"
+                },
+                "response": { "statusCode": 200, "text": "OK" }
+            },
+            {
+                "request": {
+                    "build_start_time": "2020-05-09T20:24:31.956+03:00",
+                    "timestamp": "2020-05-09T20:24:54.033+03:00",
+                    "build_finish_time": "2020-05-09T20:24:54.033+03:00",
+                    "build_event": "buildFinished",
+                    "build_name": "ProdBuild",
+                    "build_status_url": "http://192.168.21.178:81/viewLog.html?buildTypeId=ForSlackBotTests_ProdBuild&buildId=1852",
+                    "build_number": "39",
+                    "triggered_by": "admin",
+                    "build_result": "success",
+                    "build_result_previous": "failure",
+                    "build_result_delta": "fixed",
+                    "scenario": "set_topic_3_times_3_builds"
+                },
+                "response": { "statusCode": 200, "text": "OK" }
+            },
+            {
+                "request": {
+                    "build_start_time": "2020-05-09T20:25:09.352+03:00",
+                    "timestamp": "2020-05-09T20:25:09.370+03:00",
+                    "build_event": "buildStarted",
+                    "build_name": "Test",
+                    "build_status_url": "http://192.168.21.178:81/viewLog.html?buildTypeId=ForSlackBotTests_Test&buildId=1853",
+                    "build_number": "148",
+                    "triggered_by": "admin",
+                    "build_result": "running",
+                    "build_result_previous": "success",
+                    "build_result_delta": "unknown",
+                    "scenario": "set_topic_3_times_3_builds"
+                },
+                "response": { "statusCode": 200, "text": "OK" }
+            },
+            {
+                "request": {
+                    "build_start_time": "2020-05-09T20:25:10.586+03:00",
+                    "timestamp": "2020-05-09T20:25:29.156+03:00",
+                    "build_finish_time": "2020-05-09T20:25:29.156+03:00",
+                    "build_event": "buildFinished",
+                    "build_name": "Test",
+                    "build_status_url": "http://192.168.21.178:81/viewLog.html?buildTypeId=ForSlackBotTests_Test&buildId=1853",
+                    "build_number": "148",
+                    "triggered_by": "admin",
+                    "build_result": "success",
+                    "build_result_previous": "success",
+                    "build_result_delta": "unchanged",
+                    "scenario": "set_topic_3_times_3_builds"
+                },
+                "response": { "statusCode": 200, "text": "OK" }
+            },
+            {
+                "request": {
+                    "build_start_time": "2020-05-09T20:26:04.375+03:00",
+                    "timestamp": "2020-05-09T20:26:04.398+03:00",
+                    "build_event": "buildStarted",
+                    "build_name": "testing123",
+                    "build_status_url": "http://192.168.21.178:81/viewLog.html?buildTypeId=ForTests_Testing123&buildId=1854",
+                    "build_number": "32",
+                    "triggered_by": "admin",
+                    "build_result": "running",
+                    "build_result_previous": "failure",
+                    "build_result_delta": "unknown",
+                    "scenario": "set_topic_3_times_3_builds"
+                },
+                "response": { "statusCode": 200, "text": "OK" }
+            },
+            {
+                "request": {
+                    "build_start_time": "2020-05-09T20:26:06.542+03:00",
+                    "timestamp": "2020-05-09T20:26:27.119+03:00",
+                    "build_finish_time": "2020-05-09T20:26:27.119+03:00",
+                    "build_event": "buildFinished",
+                    "build_name": "testing123",
+                    "build_status_url": "http://192.168.21.178:81/viewLog.html?buildTypeId=ForTests_Testing123&buildId=1854",
+                    "build_number": "32",
+                    "triggered_by": "admin",
+                    "build_result": "success",
+                    "build_result_previous": "failure",
+                    "build_result_delta": "fixed",
+                    "scenario": "set_topic_3_times_3_builds"
+                },
+                "response": { "statusCode": 200, "text": "OK" }
+            }
+        ]
+    },
+    {
+        "scenario": "build_is_not_exist",
+        "botApiMessages": [
+            {
+                "request": {
+                    "build_start_time": "2020-05-09T22:12:59.889+03:00",
+                    "timestamp": "2020-05-09T22:12:59.911+03:00",
+                    "build_event": "buildFinished",
+                    "build_name": "NotExistingBuild",
+                    "build_status_url": "http://192.168.21.178:81/viewLog.html?buildTypeId=NotExistingBuild&buildId=1856",
+                    "build_number": "34",
+                    "triggered_by": "admin",
+                    "build_result": "failure",
+                    "build_result_previous": "success",
+                    "build_result_delta": "unknown",
+                    "scenario": "build_is_not_exist"
+                },
+                "response": {
+                    "statusCode": 404,
+                    "text": "There is no NotExistingBuild. Please, check build's and channel's names"
+                }
+            }
+        ]
+    }
+]

@@ -7,13 +7,13 @@ let nameOfFile;
 switch (process.env.NODE_ENV) {
     case "test_record":
         closedChannels = [];
-        nameOfFile = path.resolve(__dirname, "../../../../__tests__/integration/services/slack/fake-closed-channels.json");
+        nameOfFile = path.resolve(__dirname, "../../../../__tests__/system/slack/fake-closed-channels.json");
         break;
     case "test":
         // will be mocked for emptying in every test:
         closedChannels = realClosedChannel;
         // stub for saving:
-        nameOfFile = path.resolve(__dirname, "../../../../__tests__/integration/services/slack/fake-closed-channels.json");
+        nameOfFile = path.resolve(__dirname, "../../../../__tests__/system/slack/fake-closed-channels.json");
         break;
     default:
         closedChannels = realClosedChannel;

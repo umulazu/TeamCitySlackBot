@@ -20,6 +20,7 @@ export const getChannelByBuildId = async buildId => {
     const desiredObject = channelBuilds.find(
         element => element.build === buildId
     );
+
     if (!desiredObject) {
         throw new NotFoundError(
             `There is no ${buildId}. Please, check build's and channel's names`

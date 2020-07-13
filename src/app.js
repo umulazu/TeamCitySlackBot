@@ -4,6 +4,7 @@ import {
     addBuildToChannelValidation,
     teamcityWebhookValidation,
 } from "./middlewares/requestValidator/validators";
+import * as messageLogger from "./middlewares/messageLogger";
 import errorHandler from "./middlewares/errorHandler";
 import asyncHandler from "./middlewares/asyncHandler";
 import addBuildToChannel from "./handlers/addBuildToChannel";
@@ -27,6 +28,7 @@ app.post(
     "/teamcity-webhook",
     teamcityWebhookValidation,
     validationErrorMiddleware,
+    messageLogger.middleware,
     asyncHandler(teamcityWebhook)
 );
 

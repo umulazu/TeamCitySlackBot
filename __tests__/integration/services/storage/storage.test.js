@@ -162,7 +162,7 @@ describe("saveToStorage integration", () => {
         expect(channelBuildStorage.length).toBe(expectedChannelBuildCount);
     });
 
-    it("should add new channelBuild object to storage", async () => {
+    it("should add new channel-build object to storage", async () => {
         const build = "id_1";
         const channel = "channel_1";
 

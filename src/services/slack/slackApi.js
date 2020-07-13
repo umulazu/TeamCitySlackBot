@@ -1,11 +1,9 @@
 import { WebClient } from "@slack/web-api";
 import { InternalServerError, NotFoundError } from "../../errors";
 import retryPolicies from "@slack/web-api/dist/retry-policies";
-// import stenos from "../../../__tests__/integration/steno.config";
 
 let webClient;
 let userToken;
-// const steno = stenos["FAKE_BOT_TOKEN"];
 
 switch (process.env.NODE_ENV) {
     case ("test_record"):

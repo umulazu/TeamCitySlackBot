@@ -8,14 +8,19 @@
   },
   "scripts": {
     "start_app": "node index.js",
-    "test": "npm run test:unit & npm run test:integration",
-    "test:unit": "jest __tests__/unit",
-    "test:integration": "concurrently -k -s first \"npm:steno:replay\" \"npm:integration_tests\"",
-    "steno:replay": " node __tests__/stenoStart.js replay",
-    "integration_tests": "wait-on tcp:127.0.0.1:4000 && set PORT=9001&& jest __tests__/integration",
 
-    "steno:record": "node __tests__/index.js record",
-    "start_app:record": "set NODE_ENV=test_record&& node index.js"
+    "test": "npm run test:unit & npm run test:integration",
+
+    "test:unit": "jest __tests__/unit",
+
+    "test:integration": "jest __tests__/integration",
+
+    "steno:create_record": "node __tests__/system/slack/steno/index.js create",
+    "steno:update_record": "node __tests__/system/slack/steno/index.js update",
+
+    "test:system": "concurrently -k -s first \"npm:steno:replay\" \"npm:system_tests\"",
+    "steno:replay": " node __tests__/system/slack/steno/index.js replay",
+    "system_tests": "wait-on tcp:127.0.0.1:4000 && set PORT=9001&& jest __tests__/system/.*/.*.test.js"
   },
   "babel": {
     "plugins": [
@@ -30,6 +35,7 @@
     "esm": "^3.2.25",
     "express": "^4.17.1",
     "express-validator": "^6.4.0",
+    "node-fetch": "^2.6.0",
     "readline-sync": "^1.4.10",
     "supertest": "^4.0.2"
   },
