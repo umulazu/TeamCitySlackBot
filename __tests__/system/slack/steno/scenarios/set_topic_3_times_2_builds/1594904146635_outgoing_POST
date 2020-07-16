@@ -1,0 +1,36 @@
+POST /api/conversations.setTopic HTTP/1.1
+accept: application/json, text/plain, */*
+user-agent: @slack:web-api/5.8.0 node/12.14.1 win32/10.0.18363
+content-type: application/x-www-form-urlencoded
+content-length: 130
+host: localhost:3000
+connection: close
+
+"token=fake_bot_token&channel=C013L3KD95F&topic=%E2%9C%94ProdBuild-buildFinished%3Asuccess"
+
+-----
+
+HTTP/1.1 200 OK
+date: Thu, 16 Jul 2020 12:57:14 GMT
+server: Apache
+x-slack-req-id: e3162ce356c54ea02eb919302638b952
+x-oauth-scopes: channels:manage,chat:write,channels:read,channels:history
+x-accepted-oauth-scopes: channels:write,groups:write,mpim:write,im:write,post
+access-control-expose-headers: x-slack-req-id, retry-after
+x-slack-backend: r
+x-content-type-options: nosniff
+expires: Mon, 26 Jul 1997 05:00:00 GMT
+cache-control: private, no-cache, no-store, must-revalidate
+x-xss-protection: 0
+vary: Accept-Encoding
+pragma: no-cache
+access-control-allow-headers: slack-route, x-slack-version-ts, x-b3-traceid, x-b3-spanid, x-b3-parentspanid, x-b3-sampled, x-b3-flags
+strict-transport-security: max-age=31536000; includeSubDomains; preload
+referrer-policy: no-referrer
+access-control-allow-origin: *
+connection: close
+transfer-encoding: chunked
+content-type: application/json; charset=utf-8
+x-via: haproxy-www-csus,haproxy-edge-fra-0uil
+
+"{\"ok\":true,\"channel\":{\"id\":\"C013L3KD95F\",\"name\":\"for_slackbot_tests\",\"is_channel\":true,\"is_group\":false,\"is_im\":false,\"created\":1588848721,\"is_archived\":false,\"is_general\":false,\"unlinked\":0,\"name_normalized\":\"for_slackbot_tests\",\"is_shared\":false,\"parent_conversation\":null,\"creator\":\"USN2P6BC2\",\"is_ext_shared\":false,\"is_org_shared\":false,\"shared_team_ids\":[\"TT0RSH388\"],\"pending_shared\":[],\"pending_connected_team_ids\":[],\"is_pending_ext_shared\":false,\"is_member\":true,\"is_private\":false,\"is_mpim\":false,\"last_read\":\"1588848722.000300\",\"topic\":{\"value\":\":heavy_check_mark:ProdBuild-buildFinished:success\",\"creator\":\"UT8BSAXDJ\",\"last_set\":1594904234},\"purpose\":{\"value\":\"for functional testing\",\"creator\":\"USN2P6BC2\",\"last_set\":1588848722},\"previous_names\":[]}}"

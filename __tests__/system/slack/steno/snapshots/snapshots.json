@@ -1,6 +1,7 @@
 [
     {
         "scenario": "set_topic_singly",
+        "scenarioDescription": "should set new topic once",
         "botApiMessages": [
             {
                 "request": {
@@ -13,8 +14,7 @@
                     "triggered_by": "admin",
                     "build_result": "running",
                     "build_result_previous": "success",
-                    "build_result_delta": "unknown",
-                    "scenario": "set_topic_singly"
+                    "build_result_delta": "unknown"
                 },
                 "response": { "statusCode": 200, "text": "OK" }
             }
@@ -22,6 +22,7 @@
     },
     {
         "scenario": "set_topic_2_times_1_build",
+        "scenarioDescription": "should set only first topic if first is failed AND second the same",
         "botApiMessages": [
             {
                 "request": {
@@ -34,8 +35,7 @@
                     "triggered_by": "admin",
                     "build_result": "running",
                     "build_result_previous": "failure",
-                    "build_result_delta": "unknown",
-                    "scenario": "set_topic_2_times_1_build"
+                    "build_result_delta": "unknown"
                 },
                 "response": { "statusCode": 200, "text": "OK" }
             },
@@ -51,8 +51,7 @@
                     "triggered_by": "admin",
                     "build_result": "failure",
                     "build_result_previous": "failure",
-                    "build_result_delta": "unchanged",
-                    "scenario": "set_topic_2_times_1_build"
+                    "build_result_delta": "unchanged"
                 },
                 "response": { "statusCode": 200, "text": "OK" }
             },
@@ -67,8 +66,7 @@
                     "triggered_by": "admin",
                     "build_result": "running",
                     "build_result_previous": "failure",
-                    "build_result_delta": "unknown",
-                    "scenario": "set_topic_2_times_1_build"
+                    "build_result_delta": "unknown"
                 },
                 "response": { "statusCode": 200, "text": "OK" }
             },
@@ -84,8 +82,7 @@
                     "triggered_by": "admin",
                     "build_result": "failure",
                     "build_result_previous": "failure",
-                    "build_result_delta": "unchanged",
-                    "scenario": "set_topic_2_times_1_build"
+                    "build_result_delta": "unchanged"
                 },
                 "response": { "statusCode": 200, "text": "OK" }
             }
@@ -93,6 +90,7 @@
     },
     {
         "scenario": "set_topic_3_times_2_builds",
+        "scenarioDescription": "should set successful topic for second time if first is failed AND second is success",
         "botApiMessages": [
             {
                 "request": {
@@ -105,8 +103,7 @@
                     "triggered_by": "admin",
                     "build_result": "running",
                     "build_result_previous": "failure",
-                    "build_result_delta": "unknown",
-                    "scenario": "set_topic_3_times_2_builds"
+                    "build_result_delta": "unknown"
                 },
                 "response": { "statusCode": 200, "text": "OK" }
             },
@@ -122,8 +119,7 @@
                     "triggered_by": "admin",
                     "build_result": "failure",
                     "build_result_previous": "failure",
-                    "build_result_delta": "unchanged",
-                    "scenario": "set_topic_3_times_2_builds"
+                    "build_result_delta": "unchanged"
                 },
                 "response": { "statusCode": 200, "text": "OK" }
             },
@@ -138,8 +134,7 @@
                     "triggered_by": "admin",
                     "build_result": "running",
                     "build_result_previous": "failure",
-                    "build_result_delta": "unknown",
-                    "scenario": "set_topic_3_times_2_builds"
+                    "build_result_delta": "unknown"
                 },
                 "response": { "statusCode": 200, "text": "OK" }
             },
@@ -155,8 +150,7 @@
                     "triggered_by": "admin",
                     "build_result": "success",
                     "build_result_previous": "failure",
-                    "build_result_delta": "fixed",
-                    "scenario": "set_topic_3_times_2_builds"
+                    "build_result_delta": "fixed"
                 },
                 "response": { "statusCode": 200, "text": "OK" }
             }
@@ -164,6 +158,7 @@
     },
     {
         "scenario": "set_topic_2_times_2_builds",
+        "scenarioDescription": "should not set success topic if first is failed AND another is success",
         "botApiMessages": [
             {
                 "request": {
@@ -176,8 +171,7 @@
                     "triggered_by": "admin",
                     "build_result": "running",
                     "build_result_previous": "success",
-                    "build_result_delta": "unknown",
-                    "scenario": "set_topic_2_times_2_builds"
+                    "build_result_delta": "unknown"
                 },
                 "response": { "statusCode": 200, "text": "OK" }
             },
@@ -193,8 +187,7 @@
                     "triggered_by": "admin",
                     "build_result": "failure",
                     "build_result_previous": "success",
-                    "build_result_delta": "broken",
-                    "scenario": "set_topic_2_times_2_builds"
+                    "build_result_delta": "broken"
                 },
                 "response": { "statusCode": 200, "text": "OK" }
             },
@@ -209,8 +202,7 @@
                     "triggered_by": "admin",
                     "build_result": "running",
                     "build_result_previous": "success",
-                    "build_result_delta": "unknown",
-                    "scenario": "set_topic_2_times_2_builds"
+                    "build_result_delta": "unknown"
                 },
                 "response": { "statusCode": 200, "text": "OK" }
             },
@@ -226,8 +218,7 @@
                     "triggered_by": "admin",
                     "build_result": "success",
                     "build_result_previous": "success",
-                    "build_result_delta": "unchanged",
-                    "scenario": "set_topic_2_times_2_builds"
+                    "build_result_delta": "unchanged"
                 },
                 "response": { "statusCode": 200, "text": "OK" }
             }
@@ -235,6 +226,7 @@
     },
     {
         "scenario": "set_topic_3_times_3_builds",
+        "scenarioDescription": "should set successful topic when 2 failed builds will become success",
         "botApiMessages": [
             {
                 "request": {
@@ -247,8 +239,7 @@
                     "triggered_by": "admin",
                     "build_result": "running",
                     "build_result_previous": "success",
-                    "build_result_delta": "unknown",
-                    "scenario": "set_topic_3_times_3_builds"
+                    "build_result_delta": "unknown"
                 },
                 "response": { "statusCode": 200, "text": "OK" }
             },
@@ -264,8 +255,7 @@
                     "triggered_by": "admin",
                     "build_result": "failure",
                     "build_result_previous": "success",
-                    "build_result_delta": "broken",
-                    "scenario": "set_topic_3_times_3_builds"
+                    "build_result_delta": "broken"
                 },
                 "response": { "statusCode": 200, "text": "OK" }
             },
@@ -280,8 +270,7 @@
                     "triggered_by": "admin",
                     "build_result": "running",
                     "build_result_previous": "success",
-                    "build_result_delta": "unknown",
-                    "scenario": "set_topic_3_times_3_builds"
+                    "build_result_delta": "unknown"
                 },
                 "response": { "statusCode": 200, "text": "OK" }
             },
@@ -297,8 +286,7 @@
                     "triggered_by": "admin",
                     "build_result": "failure",
                     "build_result_previous": "success",
-                    "build_result_delta": "broken",
-                    "scenario": "set_topic_3_times_3_builds"
+                    "build_result_delta": "broken"
                 },
                 "response": { "statusCode": 200, "text": "OK" }
             },
@@ -313,8 +301,7 @@
                     "triggered_by": "admin",
                     "build_result": "running",
                     "build_result_previous": "success",
-                    "build_result_delta": "unknown",
-                    "scenario": "set_topic_3_times_3_builds"
+                    "build_result_delta": "unknown"
                 },
                 "response": { "statusCode": 200, "text": "OK" }
             },
@@ -330,8 +317,7 @@
                     "triggered_by": "admin",
                     "build_result": "success",
                     "build_result_previous": "success",
-                    "build_result_delta": "unchanged",
-                    "scenario": "set_topic_3_times_3_builds"
+                    "build_result_delta": "unchanged"
                 },
                 "response": { "statusCode": 200, "text": "OK" }
             },
@@ -346,8 +332,7 @@
                     "triggered_by": "admin",
                     "build_result": "running",
                     "build_result_previous": "failure",
-                    "build_result_delta": "unknown",
-                    "scenario": "set_topic_3_times_3_builds"
+                    "build_result_delta": "unknown"
                 },
                 "response": { "statusCode": 200, "text": "OK" }
             },
@@ -363,8 +348,7 @@
                     "triggered_by": "admin",
                     "build_result": "success",
                     "build_result_previous": "failure",
-                    "build_result_delta": "fixed",
-                    "scenario": "set_topic_3_times_3_builds"
+                    "build_result_delta": "fixed"
                 },
                 "response": { "statusCode": 200, "text": "OK" }
             },
@@ -379,8 +363,7 @@
                     "triggered_by": "admin",
                     "build_result": "running",
                     "build_result_previous": "success",
-                    "build_result_delta": "unknown",
-                    "scenario": "set_topic_3_times_3_builds"
+                    "build_result_delta": "unknown"
                 },
                 "response": { "statusCode": 200, "text": "OK" }
             },
@@ -396,8 +379,7 @@
                     "triggered_by": "admin",
                     "build_result": "success",
                     "build_result_previous": "success",
-                    "build_result_delta": "unchanged",
-                    "scenario": "set_topic_3_times_3_builds"
+                    "build_result_delta": "unchanged"
                 },
                 "response": { "statusCode": 200, "text": "OK" }
             },
@@ -412,8 +394,7 @@
                     "triggered_by": "admin",
                     "build_result": "running",
                     "build_result_previous": "failure",
-                    "build_result_delta": "unknown",
-                    "scenario": "set_topic_3_times_3_builds"
+                    "build_result_delta": "unknown"
                 },
                 "response": { "statusCode": 200, "text": "OK" }
             },
@@ -429,8 +410,7 @@
                     "triggered_by": "admin",
                     "build_result": "success",
                     "build_result_previous": "failure",
-                    "build_result_delta": "fixed",
-                    "scenario": "set_topic_3_times_3_builds"
+                    "build_result_delta": "fixed"
                 },
                 "response": { "statusCode": 200, "text": "OK" }
             }
@@ -438,6 +418,7 @@
     },
     {
         "scenario": "build_is_not_exist",
+        "scenarioDescription": "should not set new topic",
         "botApiMessages": [
             {
                 "request": {
@@ -450,8 +431,7 @@
                     "triggered_by": "admin",
                     "build_result": "failure",
                     "build_result_previous": "success",
-                    "build_result_delta": "unknown",
-                    "scenario": "build_is_not_exist"
+                    "build_result_delta": "unknown"
                 },
                 "response": {
                     "statusCode": 404,

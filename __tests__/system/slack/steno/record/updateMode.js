@@ -17,6 +17,8 @@ export default async () => {
 };
 
 const updateScenario = async snapshot => {
+    process.env.SCENARIO = snapshot.scenario;
+
     const bot = await openApp();
 
     await invokeBotApi(snapshot);

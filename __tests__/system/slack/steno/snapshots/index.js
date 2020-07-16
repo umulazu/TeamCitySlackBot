@@ -5,17 +5,13 @@ import { saveToFile } from "../../../../../src/services/storage/utilities";
 export const getSnapshotByScenarioName = async scenarioName =>
     snapshots.find(snapshot => snapshot.scenario === scenarioName);
 
-export const getAllSnapshots = async () => snapshots;
+export const getAllSnapshots = () => snapshots;
 
-export const createSnapshot = async (scenarioName, request, response) => {
+export const createSnapshot = async (scenarioName, scenarioDescription) => {
     return {
         scenario: scenarioName,
-        botApiMessages: [
-            {
-                request,
-                response,
-            },
-        ],
+        scenarioDescription,
+        botApiMessages: [],
     };
 };
 

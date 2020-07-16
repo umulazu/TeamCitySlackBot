@@ -10,5 +10,5 @@ export default () => {
         }
     }
 
-    return scenarioName;
+    return scenarioName.toString();
 };

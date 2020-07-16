@@ -28,12 +28,9 @@ export const log = async (req, res) => {
             text,
         };
 
-
-        const scenarioName = req.body.scenario || process.env.SCENARIO;
+        const scenarioName = process.env.SCENARIO;
 
         const requestForSnapshot = req.body;
-
-        requestForSnapshot.scenario = scenarioName;
 
         const snapshot = await snapshots.getSnapshotByScenarioName(
             scenarioName
@@ -45,17 +42,11 @@ export const log = async (req, res) => {
                 requestForSnapshot,
                 responseForSnapshot
             );
+
+            await snapshots.save();
         } else {
-            const snapshot = await snapshots.createSnapshot(
-                scenarioName,
-                requestForSnapshot,
-                responseForSnapshot
-            );
-
-            await snapshots.addSnapshot(snapshot);
+            console.log(`There is no snapshot for scenario ${scenarioName}!`);
         }
-
-        await snapshots.save();
     } catch (e) {
         console.error(e);
     }
