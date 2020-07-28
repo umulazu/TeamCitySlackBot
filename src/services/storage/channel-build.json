@@ -1,4 +1,0 @@
-[
-  { "channel": "back-end-test", "build": "PortalForStudents_BackEnd_Test" },
-  { "channel": "front-end-test", "build": "PortalForStudents_FrontEnd_Test" }
-]

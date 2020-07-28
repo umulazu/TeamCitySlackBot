@@ -17,11 +17,11 @@ describe("addBuildToChannel", () => {
             sendStatus: jest.fn(),
         };
 
-        storage.saveToStorage.mockImplementation();
+        storage.saveChannelBuild.mockImplementation();
 
         await addBuildToChannel(req, res);
 
-        expect(storage.saveToStorage).toHaveBeenCalledWith(
+        expect(storage.saveChannelBuild).toHaveBeenCalledWith(
             channelName,
             buildName
         );
@@ -41,7 +41,7 @@ describe("addBuildToChannel", () => {
             sendStatus: jest.fn(),
         };
 
-        storage.saveToStorage.mockImplementation(() => {
+        storage.saveChannelBuild.mockImplementation(() => {
             throw new Error("some error");
         });
 

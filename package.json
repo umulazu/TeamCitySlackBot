@@ -1,31 +1,49 @@
 {
-    "name": "slackbot",
-    "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
-    "engines": {
-        "node": "10.9.0"
-    },
-    "scripts": {
-        "start": "node index.js",
-        "test": "jest"
-    },
-    "babel": {
-        "plugins": [
-            "transform-es2015-modules-commonjs"
-        ]
-    },
-    "author": "",
-    "license": "ISC",
-    "dependencies": {
-        "@slack/web-api": "^5.8.0",
-        "dotenv": "^8.2.0",
-        "esm": "^3.2.25",
-        "express": "^4.17.1",
-        "express-validator": "^6.4.0"
-    },
-    "devDependencies": {
-        "jest": "^25.1.0",
-        "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2"
-    }
+  "name": "slackbot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "engines": {
+    "node": "10.9.0"
+  },
+  "scripts": {
+    "start_app": "node index.js",
+
+    "test": "npm run test:unit & npm run test:integration & npm run test:system",
+
+    "test:unit": "jest __tests__/unit",
+
+    "test:integration": "jest __tests__/integration",
+
+    "steno:create_record": "node __tests__/system/slack/steno/index.js create",
+    "steno:update_record": "node __tests__/system/slack/steno/index.js update",
+
+    "test:system": "concurrently -k -s first \"npm:steno:replay\" \"npm:system_tests\"",
+    "steno:replay": " node __tests__/system/slack/steno/index.js replay",
+    "system_tests": "wait-on tcp:127.0.0.1:4000 && set PORT=9001&& jest __tests__/system/.*/.*.test.js"
+  },
+  "babel": {
+    "plugins": [
+      "transform-es2015-modules-commonjs"
+    ]
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@slack/web-api": "^5.8.0",
+    "dotenv": "^8.2.0",
+    "esm": "^3.2.25",
+    "express": "^4.17.1",
+    "express-validator": "^6.4.0",
+    "node-fetch": "^2.6.0",
+    "readline-sync": "^1.4.10",
+    "supertest": "^4.0.2"
+  },
+  "devDependencies": {
+    "axios": "^0.19.2",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
+    "concurrently": "^5.2.0",
+    "jest": "^25.3.0",
+    "wait-on": "^5.0.0"
+  }
 }

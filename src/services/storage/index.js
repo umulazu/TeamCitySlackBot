@@ -1,31 +1,54 @@
-import { promises as fs } from "fs";
-import storage from "./channel-build.json";
-import { InternalServerError, NotFoundError } from "../../errors";
+import * as channelBuildStorage from "./channelBuild";
+import * as closedChannelStorage from "./closedChannels";
 
-const nameOfFile = "./src/services/storage/channel-build.json";
+export const saveChannelBuild = async (channel, build) => {
+    const isAlreadyExist = await channelBuildStorage.isExist(channel, build);
+    if (isAlreadyExist) {
+        console.log("Such element already exist!");
+        return;
+    }
 
-export const saveToStorage = async (channel, build) => {
-    storage.push({
-        channel,
-        build,
-    });
+    await channelBuildStorage.addChannelBuild(channel, build);
 
-    try {
-        const stringifiedData = JSON.stringify(storage);
-        await fs.writeFile(nameOfFile, stringifiedData);
-        console.log("Storage has been updated.");
-    } catch (err) {
-        throw new InternalServerError("Error occurred when writing in file.");
+    await channelBuildStorage.save();
+};
+
+export const getChannelByBuildId = async buildId =>
+    await channelBuildStorage.getChannelByBuildId(buildId);
+
+export const willTopicSet = async (channelName, buildId, isSuccess) => {
+    const closedChannel = closedChannelStorage.getClosedChannel(channelName);
+    if (closedChannel) {
+        if (
+            closedChannelStorage.isBuildFailed(closedChannel, buildId) &&
+            isSuccess
+        ) {
+            closedChannelStorage.deleteBuildId(closedChannel, buildId);
+
+            const isChannelOpen = await closedChannelStorage.openChannel(
+                closedChannel
+            );
+
+            await closedChannelStorage.save();
+
+            return isChannelOpen;
+        }
+    } else {
+        return true;
     }
 };
 
-export const getChannelByBuildId = async buildId => {
-    const desiredObject = storage.find(element => element.build === buildId);
-    if (!desiredObject) {
-        throw new NotFoundError(
-            `There is no ${buildId}. Please, check build's and channel's names`
-        );
+export const saveFailureBuild = async (channelName, buildId) => {
+    const closedChannel = closedChannelStorage.getClosedChannel(channelName);
+    if (closedChannel) {
+        if (closedChannelStorage.isBuildFailed(closedChannel, buildId)) {
+            return;
+        } else {
+            closedChannel.builds.push(buildId);
+        }
+    } else {
+        await closedChannelStorage.closeChannel(channelName, buildId);
     }
 
-    return desiredObject.channel;
+    await closedChannelStorage.save();
 };

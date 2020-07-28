@@ -2,33 +2,55 @@ import getIcon from "../../../../src/services/slack/getIcon";
 import icons from "../../../../src/services/slack/icons";
 
 describe("getIcon", function() {
-    it("should return Stop mark if running", () => {
+    it("should return Stop mark if running and not interrupted", () => {
         const result = "running";
-        // event is not important:
+        // event, previousResult can be anything:
         const event = "";
+        const previousResult = "";
 
-        expect(getIcon(result, event)).toBe(icons.stopMark);
+        expect(getIcon(result, event, previousResult)).toBe(icons.stopMark);
+    });
+
+    it("should return Stop mark if running, interrupted and previous result is not success", () => {
+        const result = "running";
+        const event = "buildInterrupted";
+        // previousResult can be anything
+        const previousResult = "";
+
+        expect(getIcon(result, event, previousResult)).toBe(icons.stopMark);
+    });
+
+    it("should return Check mark if running, interrupted and previous result is success", () => {
+        const result = "running";
+        const event = "buildInterrupted";
+        const previousResult = "success";
+
+        expect(getIcon(result, event, previousResult)).toBe(icons.checkMark);
     });
 
     it("should return Check mark if success", () => {
-        const result = "success",
-            event = "buildFinished";
+        const result = "success";
+        // event, previousResult can be anything:
+        const event = "";
+        const previousResult = "";
 
-        expect(getIcon(result, event)).toBe(icons.checkMark);
+        expect(getIcon(result, event, previousResult)).toBe(icons.checkMark);
     });
 
-    it("should return Exclamation mark if failure", () => {
+    it("should return Stop mark if failure", () => {
         const result = "failure";
-        // event can be anything except "running":
+        // event, previousResult can be anything:
         const event = "";
+        const previousResult = "";
 
-        expect(getIcon(result, event)).toBe(icons.exclamationMark);
+        expect(getIcon(result, event, previousResult)).toBe(icons.stopMark);
     });
 
     it("should return Question mark if all the rest", () => {
-        const result = "",
-            event = "";
+        const result = "";
+        const event = "";
+        const previousResult = "";
 
-        expect(getIcon(result, event)).toBe(icons.questionMark);
+        expect(getIcon(result, event, previousResult)).toBe(icons.questionMark);
     });
 });
