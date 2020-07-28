@@ -9,7 +9,7 @@
   "scripts": {
     "start_app": "node index.js",
 
-    "test": "npm run test:unit & npm run test:integration",
+    "test": "npm run test:unit & npm run test:integration & npm run test:system",
 
     "test:unit": "jest __tests__/unit",
 
